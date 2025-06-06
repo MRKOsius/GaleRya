@@ -1,6 +1,6 @@
 'use client';
 
-import SettingsPage from './SettingsPage';
+import SettingsPage from './setting-form-data';
 
 export default function Settings() {
   return <SettingsPage />;

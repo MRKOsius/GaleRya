@@ -21,18 +21,12 @@ export const metadata: Metadata = {
   description: 'A modern platform for showcasing creative portfolios',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${poppins.variable} ${playfair.variable}`}>
       <body className={`${poppins.className} min-h-screen bg-gradient-to-b from-gray-900 to-black`}>
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
-} 
+}

@@ -1,8 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Hero from '@/components/landing/Hero';
-import Background from '@/components/landing/Background';
+import Hero from '@/components/Hero';
+import Background from '@/components/Background';
 import { fadeIn } from '@/utils/animations';
 import Link from 'next/link';
 
