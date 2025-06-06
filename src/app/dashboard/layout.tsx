@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import DashboardNavbar from '../../components/DashboardNavbar';
+import DashboardNavbar from '@/components/DashboardNavbar';
 
 export default function DashboardLayout({
   children,
