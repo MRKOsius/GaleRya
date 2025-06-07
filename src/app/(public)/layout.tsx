@@ -1,19 +1,19 @@
 'use client';
 
 import React from 'react';
-import DashboardNavbar from '@/components/DashboardNavbar';
+import PublicNavbar from '@/components/common/navigation/PublicNavbar';
 
-export default function DashboardLayout({
+export default function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black">
-      <DashboardNavbar />
-      <div className="pt-20">
+      <PublicNavbar />
+      <main>
         {children}
-      </div>
+      </main>
     </div>
   );
 } 

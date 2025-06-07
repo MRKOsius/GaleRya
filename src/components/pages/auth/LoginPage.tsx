@@ -1,3 +1,4 @@
+/// <reference types="react" />
 'use client';
 
 import { useState } from 'react';
@@ -78,7 +79,7 @@ export default function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
-        router.push(selectedRole === 'admin' ? '/admin' : '/dashboard');
+        router.push(selectedRole === 'admin' ? '/dashboard/admin' : '/dashboard/user');
       } else {
         setError(data.message || 'Login failed');
       }

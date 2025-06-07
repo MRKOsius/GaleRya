@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Poppins, Playfair_Display } from 'next/font/google';
-import ClientLayout from '@/components/ClientLayout';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -27,11 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${playfair.variable}`} suppressHydrationWarning>
       <body className={`${poppins.className} min-h-screen bg-gradient-to-b from-gray-900 to-black`}>
-        <ClientLayout>
-          {children}
-        </ClientLayout>
+        {children}
       </body>
     </html>
   );

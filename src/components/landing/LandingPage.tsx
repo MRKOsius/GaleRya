@@ -191,77 +191,63 @@ export default function LandingPage() {
 // Gallery Card Component
 function GalleryCard({ 
   title, 
-  icon, 
   description, 
+  icon, 
   gradient,
   activeGradient,
   index 
 }: { 
   title: string; 
-  icon: React.ReactNode; 
-  description: string; 
+  description: string;
+  icon: React.ReactNode;
   gradient: string;
   activeGradient: string;
   index: number;
 }) {
   return (
-    <Link
-      href="/login"
-      className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 hover:border-white/20 transition-all duration-300 overflow-hidden flex flex-col h-full"
+    <motion.div
+      variants={fadeIn}
+      custom={index}
+      className="group cursor-default"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
     >
-      <motion.div
-        variants={fadeIn}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={index}
-        className="relative w-full h-full"
-      >
-        {/* Background Gradients */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-20 transition-opacity duration-500`} />
-        <div className={`absolute inset-0 bg-gradient-to-br ${activeGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-        
-        {/* Content */}
-        <div className="relative flex flex-col h-full">
-          {/* Icon */}
-          <motion.div 
-            className="w-16 h-16 mb-6 text-white/80 group-hover:text-white transition-colors"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
+      <div className={`h-full bg-gradient-to-r ${gradient} group-hover:${activeGradient} backdrop-blur-sm rounded-2xl border border-white/10 p-8 relative overflow-hidden transition-all duration-500`}>
+        <div className="relative flex flex-col h-full space-y-4">
+          <div className="w-16 h-16 text-purple-400 group-hover:scale-110 transition-transform duration-300">
             {icon}
-          </motion.div>
-
-          {/* Title & Description */}
-          <h3 className="text-2xl font-medium text-white mb-3 group-hover:text-white/90 transition-colors">
-            {title}
-          </h3>
-          <p className="text-gray-400 group-hover:text-gray-300 transition-colors mb-6 flex-grow">
-            {description}
-          </p>
-
-          {/* View Gallery Link */}
-          <div className="flex items-center text-white/70 group-hover:text-white transition-colors mt-auto">
-            <span className="text-sm font-medium">Sign in to View</span>
-            <svg className="w-4 h-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
           </div>
-
-          {/* Decorative Elements */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl transform translate-x-1/2 -translate-y-1/2 group-hover:bg-white/10 transition-colors duration-500" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2 group-hover:bg-white/10 transition-colors duration-500" />
+          <h3 className="text-2xl font-medium text-white group-hover:text-purple-300 transition-colors">{title}</h3>
+          <p className="text-gray-400 flex-grow group-hover:text-gray-300 transition-colors">{description}</p>
+          <div className="inline-flex items-center text-purple-400 group-hover:text-purple-300 transition-colors">
+            <span>Explore Gallery</span>
+            <motion.svg 
+              className="w-5 h-5 ml-2" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </motion.svg>
+          </div>
         </div>
-      </motion.div>
-    </Link>
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-purple-600/10 via-pink-600/10 to-purple-600/10"
+          initial={{ opacity: 0 }}
+          whileHover={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
+    </motion.div>
   );
 }
 
-// Icon Components
 function PaintIcon() {
   return (
     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
     </svg>
   );
 }
@@ -269,7 +255,7 @@ function PaintIcon() {
 function DesignIcon() {
   return (
     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
     </svg>
   );
 }
@@ -277,8 +263,8 @@ function DesignIcon() {
 function CameraIcon() {
   return (
     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
   );
 }
@@ -286,7 +272,7 @@ function CameraIcon() {
 function PenIcon() {
   return (
     <svg className="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
     </svg>
   );
 } 
